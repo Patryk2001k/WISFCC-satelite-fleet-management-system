@@ -1,0 +1,110 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #0A121F; 
+  overflow-x: hidden; 
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A121F;
+  border-left: 1px solid #073641;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #073641;
+  border-radius: 4px;
+  border: 1px solid #00FFFF;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00FFFF;
+  box-shadow: 0 0 10px #00FFFF;
+}
+
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #073641 #0A121F;
+}
+
+
+.hud-modal .ant-modal-content {
+  background-color: #0A121F !important;
+  background: #0A121F !important;
+  padding: 0 !important;
+  border: 1px solid #00FFFF !important;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+.hud-modal .ant-modal-header {
+  background-color: #0A121F !important;
+  background: #0A121F !important;
+  border-bottom: 1px solid #073641 !important;
+  padding: 16px 24px !important;
+  margin: 0 !important;
+}
+
+.hud-modal .ant-modal-title {
+  color: #00FFFF !important;
+  letter-spacing: 1px;
+}
+
+.hud-modal .ant-modal-close {
+  color: #FF4D4F !important;
+  top: 16px !important;
+  inset-inline-end: 24px !important;
+}
+
+.hud-modal .ant-modal-close:hover {
+  background-color: rgba(255, 77, 79, 0.15) !important;
+}
+
+.hud-modal .ant-modal-body {
+  background-color: #0A121F !important;
+  background: #0A121F !important;
+  padding: 24px !important;
+}
+
+.hud-modal .ant-modal-footer {
+  background-color: #0A121F !important;
+  background: #0A121F !important;
+  border-top: 1px solid #073641 !important;
+  padding: 16px 24px !important;
+  margin: 0 !important;
+}
+
+
+.hud-modal .ant-form-item-label > label {
+  color: #7AABB1 !important;
+}
+
+.hud-modal .ant-input, 
+.hud-modal .ant-select-selector {
+  background-color: rgba(10, 37, 46, 0.8) !important;
+  color: white !important;
+  border-color: #073641 !important;
+}
+
+.hud-modal .ant-select-arrow {
+  color: #00FFFF !important;
+}
+
+.hud-modal .ant-select-selection-item {
+  color: white !important;
+}

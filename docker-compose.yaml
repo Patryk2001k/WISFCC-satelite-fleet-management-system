@@ -1,0 +1,73 @@
+version: '3.8'
+
+#docker compose up (and wait at least 20 seconds before it starts)
+
+services:
+  wisfcc-db:
+    image: postgres:latest
+    container_name: wisfcc-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: wisfcc_db
+    ports:
+      - "5432:5432"
+    networks:
+      - wisfcc-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d wisfcc_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  wisfcc-db-seeder:
+    build: ./WISFCC_python  
+    container_name: wisfcc-db-seeder
+    depends_on:
+      wisfcc-db:
+        condition: service_healthy
+      wisfcc-java:
+        condition: service_started
+    environment:
+      DB_HOST: wisfcc-db    
+    command: ["/bin/sh", "-c", "sleep 15 && python generator.py"]
+    networks:
+      - wisfcc-network
+
+  wisfcc-python:
+    build: ./WISFCC_python 
+    container_name: wisfcc-python
+    ports:
+      - "8000:8000"
+    networks:
+      - wisfcc-network
+
+  wisfcc-java:
+    build: ./WISFCC_spring     
+    container_name: wisfcc-java
+    ports:
+      - "8080:8080"
+    depends_on:
+      wisfcc-db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://wisfcc-db:5432/wisfcc_db
+      PYTHON_SERVICE_URL: http://wisfcc-python:8000/api/calculate-batch
+      PYTHON_MISSION_ORBIT_ADJUST_URL: http://wisfcc-python:8000/api/physics/orbit-adjust
+      PYTHON_PHYSICS_CONJUNCTIONS_URL: http://wisfcc-python:8000/api/physics/conjunctions
+    networks:
+      - wisfcc-network
+
+  wisfcc-frontend:
+    build: ./WISFCC_react   
+    container_name: wisfcc-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - wisfcc-java
+    networks:
+      - wisfcc-network
+
+networks:
+  wisfcc-network:
+    driver: bridge
