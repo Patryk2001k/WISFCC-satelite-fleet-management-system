@@ -1,1 +1,2 @@
-# Just use "docker compose up --build" and wait at least 1 or 2 minutes and then -> just localhost
+# Instruction
+Just use "docker compose up --build" and wait at least 1 or 2 minutes and then -> just localhost
