@@ -32,9 +32,9 @@ docker compose up -d --build
 ```
 
 **3. Database Initialization (Auto-Seeding)**  
-After executing the command, wait for about **15–20 seconds**. During this time, the system automates the startup processes:
+After executing the command, wait for about **1-2 minutes**. During this time, the system automates the startup processes:
 * The Spring Boot server automatically creates table schemas in the PostgreSQL database.
-* A Python script (Seeder) clears and populates the database with test data (100 simulated satellites, collisions, and pre-configured user accounts).
+* A Python script (Seeder) clears and populates the database with test data (over 100 simulated satellites, collisions, and pre-configured user accounts).
 
 **4. Access the application**  
 Once the containers are successfully up and running, the application will be available in your browser at:  
