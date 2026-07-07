@@ -81,9 +81,21 @@ public class UserService {
     @Transactional
     public void deleteUser(String strId) {
         Long id = parseUserId(strId);
-        if (!userRepository.existsById(id)) {
-            throw new RuntimeException("Nie znaleziono użytkownika o ID: " + strId);
+        
+        String currentUsername = org.springframework.security.core.context.SecurityContextHolder
+                .getContext().getAuthentication().getName();
+                
+        UserEntity userToDelete = userRepository.findById(id)
+                .orElseThrow(() -> new org.springframework.web.server.ResponseStatusException(
+                        org.springframework.http.HttpStatus.NOT_FOUND, "Nie znaleziono użytkownika o ID: " + strId));
+
+        if (userToDelete.getUsername().equals(currentUsername)) {
+            throw new org.springframework.web.server.ResponseStatusException(
+                    org.springframework.http.HttpStatus.BAD_REQUEST, 
+                    "SECURITY VIOLATION: Nie możesz usunąć własnego konta operacyjnego!"
+            );
         }
+
         userRepository.deleteById(id);
     }
 
