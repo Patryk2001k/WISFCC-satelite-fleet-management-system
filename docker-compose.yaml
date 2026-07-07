@@ -21,7 +21,7 @@ services:
       retries: 5
 
   wisfcc-db-seeder:
-    build: ./WISFCC_python  
+    build: ./db-seeder
     container_name: wisfcc-db-seeder
     depends_on:
       wisfcc-db:
