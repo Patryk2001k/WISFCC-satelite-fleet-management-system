@@ -15,7 +15,6 @@
 **/.settings/
 **/bin/
 **/.factorypath
-**/.mvn/
 
 # PYTHON
 **/__pycache__/
