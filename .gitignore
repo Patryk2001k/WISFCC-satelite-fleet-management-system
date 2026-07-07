@@ -16,8 +16,6 @@
 **/bin/
 **/.factorypath
 **/.mvn/
-**/mvnw
-**/mvnw.cmd
 
 # PYTHON
 **/__pycache__/
