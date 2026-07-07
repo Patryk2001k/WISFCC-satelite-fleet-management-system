@@ -12,7 +12,7 @@ The project is based on a microservices architecture and consists of three indep
 
 ---
 
-## 🚀 Quick Start (Docker)
+## Quick Start (Docker)
 
 The system is fully containerized, allowing it to run without any local configuration of Java, Python, or database environments.
 
